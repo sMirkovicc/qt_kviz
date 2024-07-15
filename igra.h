@@ -4,6 +4,7 @@
 #define IGRA_H
 
 #include <QWidget>
+#include <QObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +24,14 @@ private slots:
     void on_pushButton_UnesiIme_clicked();
 
     void on_pushButton_izborKviza_clicked();
+
+public slots:
+    void ucitavanjeIDKviza();
+    void ucitavanjeBaze();
+
+signals:
+    void ucitajIDKviza();
+    void ucitajBazu();
 
 private:
     Ui::Igra *ui;

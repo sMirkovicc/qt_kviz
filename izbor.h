@@ -6,6 +6,7 @@
 #define IZBOR_H
 
 #include <QDialog>
+#include <QObject>
 
 namespace Ui {
 class Izbor;
@@ -19,11 +20,24 @@ public:
     explicit Izbor(QWidget *parent = nullptr);
     ~Izbor();
     void ucitajNaziviID(QString imeKviza, int ID);
-    void ucitajKviz();
     void ucitajIme(QString ime);
 
 private slots:
-    void on_pushButton_potvrdaOdg_clicked();
+    void on_pushButton_naredno_clicked();
+
+    void on_pushButton_prethodno_clicked();
+
+    void on_pushButton_zavrsi_clicked();
+
+public slots:
+    void ucitavanjeKviza();
+    void igranje();
+    void ispis();
+
+signals:
+    void ucitajKviz();
+    void igraj();
+    void zavrsi();
 
 private:
     Ui::Izbor *ui;
@@ -32,7 +46,7 @@ private:
     QString odgovori[4];
     std::vector<Pitanje> KolekcijaPitanja;
     int i = 0;
-    int odg;
+    int odg[7];
     int tacni_odg = 0;
     int w;
     int h;

@@ -385,8 +385,8 @@
   <widget class="QLabel" name="label_brPitanja">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>170</y>
+     <x>210</x>
+     <y>160</y>
      <width>541</width>
      <height>16</height>
     </rect>
@@ -405,8 +405,8 @@
   <widget class="QLabel" name="label_Pitanje">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>210</y>
+     <x>210</x>
+     <y>200</y>
      <width>591</width>
      <height>41</height>
     </rect>
@@ -425,24 +425,24 @@
   <widget class="QComboBox" name="comboBox_odgovori">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>270</y>
+     <x>210</x>
+     <y>260</y>
      <width>331</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_potvrdaOdg">
+  <widget class="QPushButton" name="pushButton_naredno">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>270</y>
+     <x>600</x>
+     <y>260</y>
      <width>80</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Potvrdi</string>
+    <string>Sljedece</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_slika2">
@@ -469,6 +469,32 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_prethodno">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>260</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prethodno</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_zavrsi">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>320</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Zavrsi kviz</string>
    </property>
   </widget>
  </widget>
