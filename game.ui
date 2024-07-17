@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Igra</class>
- <widget class="QWidget" name="Igra">
+ <class>Game</class>
+ <widget class="QWidget" name="Game">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -363,7 +363,7 @@
   <property name="windowTitle">
    <string>Pocetak</string>
   </property>
-  <widget class="QPushButton" name="pushButton_UnesiIme">
+  <widget class="QPushButton" name="pushButton_InsertName">
    <property name="geometry">
     <rect>
      <x>380</x>
@@ -512,7 +512,7 @@
     <string>Unesite vase ime:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="unosImena">
+  <widget class="QLineEdit" name="insertName">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -529,7 +529,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_izborKviza">
+  <widget class="QComboBox" name="comboBox_quizSelection">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -546,7 +546,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_izborKviza">
+  <widget class="QPushButton" name="pushButton_QuizSelection">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -586,7 +586,7 @@
     <string>Trenutno dostupni kvizovi:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_slika">
+  <widget class="QLabel" name="label_picture">
    <property name="geometry">
     <rect>
      <x>600</x>

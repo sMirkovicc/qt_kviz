@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Izbor</class>
- <widget class="QDialog" name="Izbor">
+ <class>Selection</class>
+ <widget class="QDialog" name="Selection">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -362,7 +362,7 @@
   <property name="windowTitle">
    <string>Kviz</string>
   </property>
-  <widget class="QLabel" name="label_nazivKviza">
+  <widget class="QLabel" name="label_quizName">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -382,7 +382,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_brPitanja">
+  <widget class="QLabel" name="label_questionNumber">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -402,7 +402,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_Pitanje">
+  <widget class="QLabel" name="label_question">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -422,7 +422,7 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_odgovori">
+  <widget class="QComboBox" name="comboBox_answers">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -432,7 +432,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_naredno">
+  <widget class="QPushButton" name="pushButton_next">
    <property name="geometry">
     <rect>
      <x>600</x>
@@ -445,7 +445,7 @@
     <string>Sljedece</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_slika2">
+  <widget class="QLabel" name="label_picture2">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -458,7 +458,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_konfete">
+  <widget class="QLabel" name="label_confetti">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -471,7 +471,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_prethodno">
+  <widget class="QPushButton" name="pushButton_previous">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -484,7 +484,7 @@
     <string>Prethodno</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_zavrsi">
+  <widget class="QPushButton" name="pushButton_finish">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -497,6 +497,15 @@
     <string>Zavrsi kviz</string>
    </property>
   </widget>
+  <zorder>label_confetti</zorder>
+  <zorder>label_quizName</zorder>
+  <zorder>label_questionNumber</zorder>
+  <zorder>label_question</zorder>
+  <zorder>comboBox_answers</zorder>
+  <zorder>pushButton_next</zorder>
+  <zorder>label_picture2</zorder>
+  <zorder>pushButton_previous</zorder>
+  <zorder>pushButton_finish</zorder>
  </widget>
  <resources/>
  <connections/>
