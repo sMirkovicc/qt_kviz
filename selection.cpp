@@ -1,6 +1,7 @@
 #include "selection.h"
 #include "ui_selection.h"
 #include "game.h"
+#include "highscore.h"
 #include <QPixmap>
 
 Selection::Selection(QWidget *parent)
@@ -25,6 +26,7 @@ void Selection::Init()
     w = ui->label_picture2->width();
     h = ui->label_picture2->height();
     ui->label_picture2->setPixmap(picture2.scaled(w, h, Qt::IgnoreAspectRatio));
+    ui->pushButton_highscore->setVisible(false);
 
     ui->comboBox_answers->setPlaceholderText("--Vas odgovor--");
     ui->comboBox_answers->setCurrentIndex(-1);
@@ -69,8 +71,8 @@ void Selection::quizLoading()
 {
     {
         QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
-        QString dbPath = QCoreApplication::applicationDirPath() + "/kviz.db";
-        qDebug() << dbPath;
+        //QString dbPath = QCoreApplication::applicationDirPath() + "/kviz.db";
+        //qDebug() << dbPath;
         m_db.setDatabaseName("/home/Sara/saraqt/qt_kviz/database/kviz.db");
 
         if (!m_db.open())
@@ -132,6 +134,7 @@ void Selection::print()
 
     ui->label_question->setText("Takmicar " + m_playerName + " je pogodio " + QString::number(m_correctAnswers) + "/"
                                 + QString::number(m_size) + " pitanja.");
+    ui->pushButton_highscore->setVisible(true);
     ui->label_questionNumber->setVisible(false);
     ui->comboBox_answers->setVisible(false);
     ui->pushButton_next->setVisible(false);
@@ -142,6 +145,32 @@ void Selection::print()
     w = ui->label_confetti->width();
     h = ui->label_confetti->height();
     ui->label_confetti->setPixmap(picture3.scaled(w, h, Qt::IgnoreAspectRatio));
+
+    {
+        QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
+        m_db.setDatabaseName("/home/Sara/saraqt/qt_kviz/database/kviz.db");
+
+        if (!m_db.open())
+        {
+            qDebug() << "Error: connection with database failed";
+        }
+        else
+        {
+            qDebug() << "Database: connection ok";
+        }
+        QSqlQuery query4;
+        query4.prepare("INSERT INTO highscore VALUES ((:playerName), (:quizID), (:points))");
+        query4.bindValue(":playerName", m_playerName);
+        query4.bindValue(":quizID", quiz.getQuizID());
+        query4.bindValue(":points", m_correctAnswers);
+
+        query4.exec();
+
+        m_db.close();
+    }
+
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+
 }
 
 void Selection::on_pushButton_next_clicked()
@@ -168,5 +197,14 @@ void Selection::on_pushButton_finish_clicked()
     m_answer[indexOfCurrentQuestion] = ui->comboBox_answers->currentIndex() + 1;
 
     emit Selection::finish();
+}
+
+
+void Selection::on_pushButton_highscore_clicked()
+{
+    Highscore highscore;
+    highscore.Init();
+    highscore.setModal(true);
+    highscore.exec();
 }
 

@@ -31,6 +31,8 @@ private slots:
 
     void on_pushButton_finish_clicked();
 
+    void on_pushButton_highscore_clicked();
+
 public slots:
     void quizLoading();
     void playing();

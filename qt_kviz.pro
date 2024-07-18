@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     game.cpp \
+    highscore.cpp \
     main.cpp \
     question.cpp \
     quiz.cpp \
@@ -17,12 +18,14 @@ SOURCES += \
 
 HEADERS += \
     game.h \
+    highscore.h \
     question.h \
     quiz.h \
     selection.h
 
 FORMS += \
     game.ui \
+    highscore.ui \
     selection.ui
 
 # Default rules for deployment.

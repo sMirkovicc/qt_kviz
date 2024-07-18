@@ -497,6 +497,19 @@
     <string>Zavrsi kviz</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_highscore">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>320</y>
+     <width>121</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prikazi highscore</string>
+   </property>
+  </widget>
   <zorder>label_confetti</zorder>
   <zorder>label_quizName</zorder>
   <zorder>label_questionNumber</zorder>
@@ -505,6 +518,7 @@
   <zorder>pushButton_next</zorder>
   <zorder>label_picture2</zorder>
   <zorder>pushButton_previous</zorder>
+  <zorder>pushButton_highscore</zorder>
   <zorder>pushButton_finish</zorder>
  </widget>
  <resources/>
