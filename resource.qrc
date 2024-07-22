@@ -1,8 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>database/slika.jpg</file>
-        <file>database/slika2.jpg</file>
-        <file>database/purple-glitter.png</file>
-        <file>database/Purple-Confetti</file>
+        <file>database/picture.jpg</file>
+        <file>database/picture2.jpg</file>
+        <file>database/purple-confetti</file>
     </qresource>
 </RCC>

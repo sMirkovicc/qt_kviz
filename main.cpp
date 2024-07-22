@@ -1,5 +1,4 @@
-#include "igra.h"
-#include "izbor.h"
+#include "game.h"
 
 #include <QApplication>
 
@@ -7,8 +6,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Igra w;
-    w.show();
+    Game g;
+    g.Init();
+    g.show();
 
     return a.exec();
 }

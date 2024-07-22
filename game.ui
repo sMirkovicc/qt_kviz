@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Izbor</class>
- <widget class="QDialog" name="Izbor">
+ <class>Game</class>
+ <widget class="QWidget" name="Game">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -356,115 +356,243 @@
   <property name="font">
    <font>
     <family>Sawasdee</family>
+    <pointsize>12</pointsize>
     <bold>true</bold>
    </font>
   </property>
   <property name="windowTitle">
-   <string>Kviz</string>
+   <string>Pocetak</string>
   </property>
-  <widget class="QLabel" name="label_nazivKviza">
+  <widget class="QPushButton" name="pushButton_InsertName">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
-     <width>331</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Sawasdee</family>
-     <pointsize>15</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_brPitanja">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
+     <x>380</x>
      <y>170</y>
-     <width>541</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Sawasdee</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Pitanje">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>210</y>
-     <width>591</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Sawasdee</family>
-     <pointsize>12</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_odgovori">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>270</y>
-     <width>331</width>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_potvrdaOdg">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>270</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>Potvrdi</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_slika2">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>460</y>
-     <width>801</width>
-     <height>141</height>
+     <x>100</x>
+     <y>120</y>
+     <width>201</width>
+     <height>21</height>
     </rect>
    </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>67</red>
+         <green>6</green>
+         <blue>104</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>227</red>
+         <green>205</green>
+         <blue>236</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>97</red>
+         <green>53</green>
+         <blue>131</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="ButtonText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>97</red>
+         <green>53</green>
+         <blue>131</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Highlight">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>150</red>
+         <green>136</green>
+         <blue>238</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>67</red>
+         <green>6</green>
+         <blue>104</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>227</red>
+         <green>205</green>
+         <blue>236</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>97</red>
+         <green>53</green>
+         <blue>131</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="ButtonText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>97</red>
+         <green>53</green>
+         <blue>131</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Highlight">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>150</red>
+         <green>136</green>
+         <blue>238</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>227</red>
+         <green>205</green>
+         <blue>236</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
-    <string/>
+    <string>Unesite vase ime:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_konfete">
+  <widget class="QLineEdit" name="insertName">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>320</y>
-     <width>801</width>
-     <height>281</height>
+     <x>100</x>
+     <y>170</y>
+     <width>241</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_quizSelection">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>420</y>
+     <width>241</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_QuizSelection">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>420</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Potvrdi</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>370</y>
+     <width>271</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Sawasdee</family>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Trenutno dostupni kvizovi:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_picture">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>0</y>
+     <width>201</width>
+     <height>601</height>
     </rect>
    </property>
    <property name="text">
