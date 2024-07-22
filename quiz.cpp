@@ -2,8 +2,8 @@
 
 Quiz::Quiz() {}
 
-Quiz::Quiz(int QuizID, QString QuizName, std::vector<Question> CollectionOfQuestions)
-    : m_QuizID(QuizID), m_QuizName(QuizName), m_CollectionOfQuestions(CollectionOfQuestions)
+Quiz::Quiz(int QuizId, QString QuizName, std::vector<Question> CollectionOfQuestions)
+    : m_QuizId(QuizId), m_QuizName(QuizName), m_CollectionOfQuestions(CollectionOfQuestions)
 {
 
 }
@@ -11,18 +11,18 @@ Quiz::Quiz(int QuizID, QString QuizName, std::vector<Question> CollectionOfQuest
 Quiz::~Quiz() {}
 
 Quiz::Quiz(const Quiz& original)
-    : m_QuizID(original.m_QuizID), m_QuizName(original.m_QuizName), m_CollectionOfQuestions(original.m_CollectionOfQuestions)
+    : m_QuizId(original.m_QuizId), m_QuizName(original.m_QuizName), m_CollectionOfQuestions(original.m_CollectionOfQuestions)
 {
 
 }
 
-void Quiz::setQuizID(int QuizID)
+void Quiz::setQuizId(int QuizId)
 {
-    m_QuizID = QuizID;
+    m_QuizId = QuizId;
 }
-int Quiz::getQuizID()
+int Quiz::getQuizId()
 {
-    return m_QuizID;
+    return m_QuizId;
 }
 
 void Quiz::setQuizName(QString QuizName)

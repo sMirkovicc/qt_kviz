@@ -7,20 +7,20 @@
 class Quiz
 {
 private:
-    int m_QuizID;
+    int m_QuizId;
     QString m_QuizName;
     std::vector<Question> m_CollectionOfQuestions;
 public:
     Quiz();
 
-    Quiz(int QuizID, QString QuizName, std::vector<Question> CollectionOfQuestions);
+    Quiz(int QuizId, QString QuizName, std::vector<Question> CollectionOfQuestions);
 
     ~Quiz();
 
     Quiz(const Quiz& original);
 
-    void setQuizID(int QuizID);
-    int getQuizID();
+    void setQuizId(int QuizId);
+    int getQuizId();
 
     void setQuizName(QString QuizName);
     QString getQuizName();

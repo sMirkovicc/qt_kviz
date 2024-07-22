@@ -2,10 +2,10 @@
 
 Question::Question() {}
 
-Question::Question(int QuestionID, int QuizID, QString Question, QString ArrayOfAnswers[4], int CorrectAnswer)
-    : m_QuestionID(QuestionID), m_QuizID(QuizID), m_Question(Question), m_CorrectAnswer(CorrectAnswer)
+Question::Question(int QuestionId, int QuizId, QString Question, QString ArrayOfAnswers[numberOfAnswers], int CorrectAnswer)
+    : m_QuestionId(QuestionId), m_QuizId(QuizId), m_Question(Question), m_CorrectAnswer(CorrectAnswer)
 {
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < numberOfAnswers; i++)
     {
         m_ArrayOfAnswers[i] = ArrayOfAnswers[i];
     }
@@ -14,30 +14,30 @@ Question::Question(int QuestionID, int QuizID, QString Question, QString ArrayOf
 Question::~Question() {}
 
 Question::Question(const Question& original)
-    : m_QuestionID(original.m_QuestionID), m_QuizID(original.m_QuizID), m_Question(original.m_Question), m_CorrectAnswer(original.m_CorrectAnswer)
+    : m_QuestionId(original.m_QuestionId), m_QuizId(original.m_QuizId), m_Question(original.m_Question), m_CorrectAnswer(original.m_CorrectAnswer)
 {
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < numberOfAnswers; i++)
     {
         m_ArrayOfAnswers[i] = original.m_ArrayOfAnswers[i];
     }
 }
 
-void Question::setQuestionID(int QuestionID)
+void Question::setQuestionId(int QuestionId)
 {
-    m_QuestionID = QuestionID;
+    m_QuestionId = QuestionId;
 }
-int Question::getQuestionID()
+int Question::getQuestionId()
 {
-    return m_QuestionID;
+    return m_QuestionId;
 }
 
-void Question::setQuizID(int QuizID)
+void Question::setQuizId(int QuizId)
 {
-    m_QuizID = QuizID;
+    m_QuizId = QuizId;
 }
-int Question::getQuizID()
+int Question::getQuizId()
 {
-    return m_QuizID;
+    return m_QuizId;
 }
 
 void Question::setQuestion(QString Question)
@@ -60,14 +60,14 @@ QString Question::getAnswer(int i)
 
 bool Question::setCorrectAnswer(int CorrectAnswer)
 {
-    if(CorrectAnswer > 0 && CorrectAnswer < 5)
+    if(CorrectAnswer > 0 && CorrectAnswer < numberOfAnswers + 1)
     {
         m_CorrectAnswer = CorrectAnswer;
-        return 1;
+        return true;
     }
     else
     {
-        return 0;
+        return false;
     }
 }
 int Question::getCorrectAnswer()
