@@ -1,10 +1,9 @@
-#include <QtSql>
-
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
 #include <QDialog>
 #include <QObject>
+#include <QtSql>
 
 namespace Ui {
 class Highscore;

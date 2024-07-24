@@ -1,8 +1,8 @@
-#include "question.h"
-#include <vector>
-
 #ifndef QUIZ_H
 #define QUIZ_H
+
+#include "question.h"
+#include <vector>
 
 class Quiz
 {

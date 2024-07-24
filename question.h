@@ -1,7 +1,7 @@
-#include <QString>
-
 #ifndef QUESTION_H
 #define QUESTION_H
+
+#include <QString>
 
 #define NUMBER_OF_ANSWERS 4
 

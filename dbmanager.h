@@ -1,9 +1,9 @@
+#ifndef DBMANAGER_H
+#define DBMANAGER_H
+
 #include <QString>
 #include <QSqlDatabase>
 #include <QDialog>
-
-#ifndef DBMANAGER_H
-#define DBMANAGER_H
 
 class DbManager
 {

@@ -1,9 +1,8 @@
-#include <QtSql>
-#include "selection.h"
-
 #ifndef GAME_H
 #define GAME_H
 
+#include "selection.h"
+#include <QtSql>
 #include <QWidget>
 #include <QObject>
 
