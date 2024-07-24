@@ -175,12 +175,13 @@ void Selection::print()
 
 void Selection::nextStep(int step)
 {
+    Step value = static_cast<Step>(step);
     m_answer[indexOfCurrentQuestion] = ui->comboBox_answers->currentIndex() + 1;
-    if(step == PREVIOUS_QUESTION)
+    if(value == PREVIOUS_QUESTION)
     {
         indexOfCurrentQuestion--;
     }
-    else if(step == NEXT_QUESTION)
+    else if(value == NEXT_QUESTION)
     {
         indexOfCurrentQuestion++;
     }
