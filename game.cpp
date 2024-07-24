@@ -19,10 +19,10 @@ void Game::init()
     QObject::connect(this, &Game::loadQuizId, this, &Game::quizIdLoading);
     QObject::connect(this, &Game::loadDatabase, this, &Game::databaseLoading);
 
-    QPixmap picture("://database/picture.jpg");
+    QPixmap backgroundPicture("://assets/picture.jpg");
     int w = ui->label_picture->width();
     int h = ui->label_picture->height();
-    ui->label_picture->setPixmap(picture.scaled(w, h, Qt::IgnoreAspectRatio));
+    ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 
     ui->pushButton_quizSelection->setVisible(false);
     ui->comboBox_quizSelection->setVisible(false);

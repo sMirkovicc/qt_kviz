@@ -1864,7 +1864,7 @@
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>160</y>
+       <y>120</y>
        <width>541</width>
        <height>16</height>
       </rect>
@@ -1884,9 +1884,9 @@
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>200</y>
-       <width>591</width>
-       <height>41</height>
+       <y>160</y>
+       <width>471</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="font">
@@ -1898,6 +1898,9 @@
      </property>
      <property name="text">
       <string>TextLabel</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_unansweredQuestions2">

@@ -22,10 +22,10 @@ void Highscore::init()
     QObject::connect(this, &Highscore::loadQuizId, this, &Highscore::quizIdLoading);
     QObject::connect(this, &Highscore::loadHighscore, this, &Highscore::highscoreLoading);
 
-    QPixmap picture("://database/picture.jpg");
+    QPixmap backgroundPicture("://assets/picture.jpg");
     int w = ui->label_picture->width();
     int h = ui->label_picture->height();
-    ui->label_picture->setPixmap(picture.scaled(w, h, Qt::IgnoreAspectRatio));
+    ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 
     ui->comboBox_quiz->setPlaceholderText("--Vas izbor--");
     ui->comboBox_quiz->setCurrentIndex(-1);
@@ -75,7 +75,7 @@ void Highscore::highscoreLoading()
     selectForHighscoreQuery.exec();
 
     model = new QSqlQueryModel();
-    model->setQuery(selectForHighscoreQuery);
+    model->setQuery(std::move(selectForHighscoreQuery));
     ui->tableView->setModel(model);
     QHeaderView* vheader = ui->tableView->verticalHeader();
     vheader->setSectionResizeMode(QHeaderView::Stretch);

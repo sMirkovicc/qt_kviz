@@ -3,38 +3,38 @@
 #ifndef QUESTION_H
 #define QUESTION_H
 
-#define numberOfAnswers 4
+#define NUMBER_OF_ANSWERS 4
 
 class Question
 {
 private:
-    int m_QuestionId;
-    int m_QuizId;
-    QString m_Question;
-    QString m_ArrayOfAnswers[numberOfAnswers];
-    int m_CorrectAnswer;
+    int m_questionId;
+    int m_quizId;
+    QString m_question;
+    QString m_arrayOfAnswers[NUMBER_OF_ANSWERS];
+    int m_correctAnswer;
 public:
     Question();
 
-    Question(int QuestionId, int QuizId, QString Question, QString ArrayOfAnswers[numberOfAnswers], int CorrectAnswer);
+    Question(int questionId, int quizId, QString question, QString arrayOfAnswers[NUMBER_OF_ANSWERS], int correctAnswer);
 
     ~Question();
 
     Question(const Question& original);
 
-    void setQuestionId(int QuestionId);
+    void setQuestionId(int& questionId);
     int getQuestionId();
 
-    void setQuizId(int QuizId);
+    void setQuizId(int& quizId);
     int getQuizId();
 
-    void setQuestion(QString Question);
+    void setQuestion(QString& question);
     QString getQuestion();
 
-    void setAnswer(int i, QString Answer);
+    void setAnswer(int i, QString& answer);
     QString getAnswer(int i);
 
-    bool setCorrectAnswer(int CorrectAnswer);
+    bool setCorrectAnswer(int& correctAnswer);
     int getCorrectAnswer();
 };
 

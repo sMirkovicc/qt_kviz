@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>database/picture.jpg</file>
-        <file>database/picture2.jpg</file>
-        <file>database/purple-confetti</file>
+        <file>assets/picture.jpg</file>
+        <file>assets/picture2.jpg</file>
+        <file>assets/purple-confetti</file>
     </qresource>
 </RCC>

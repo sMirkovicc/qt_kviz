@@ -1,5 +1,5 @@
+#pragma once
 #include <QtSql>
-//#include "form.h"
 #include "selection.h"
 
 #ifndef GAME_H
