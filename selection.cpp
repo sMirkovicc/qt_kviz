@@ -23,11 +23,11 @@ void Selection::init()
     QObject::connect(this, &Selection::finish, this, &Selection::print);
 
     QSignalMapper *bMapper = new QSignalMapper;
-    connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(enumeration(int)));
+    connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(nextStep(int)));
     connect(ui->pushButton_previous, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-    bMapper->setMapping(ui->pushButton_previous, -1);
+    bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
     connect(ui->pushButton_next, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-    bMapper->setMapping(ui->pushButton_next, 1);
+    bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
 
     ui->stackedWidget->setCurrentIndex(0);
     QPixmap backgroundPicture("://assets/picture2.jpg");
@@ -69,12 +69,10 @@ void Selection::buttonVisibility()
     if(indexOfCurrentQuestion == m_size - 1)
     {
         ui->pushButton_next->setVisible(false);
-        //ui->pushButton_finish->setVisible(true);
     }
     else
     {
         ui->pushButton_next->setVisible(true);
-        //ui->pushButton_finish->setVisible(false);
     }
 }
 
@@ -175,14 +173,14 @@ void Selection::print()
     insertIntoHighscoreQuery.exec();
 }
 
-void Selection::enumeration(int enumeration)
+void Selection::nextStep(int step)
 {
     m_answer[indexOfCurrentQuestion] = ui->comboBox_answers->currentIndex() + 1;
-    if(enumeration == -1)
+    if(step == PREVIOUS_QUESTION)
     {
         indexOfCurrentQuestion--;
     }
-    else if(enumeration == 1)
+    else if(step == NEXT_QUESTION)
     {
         indexOfCurrentQuestion++;
     }

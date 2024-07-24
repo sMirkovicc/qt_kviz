@@ -1,4 +1,3 @@
-#pragma once
 #ifndef SELECTION_H
 #define SELECTION_H
 
@@ -28,6 +27,7 @@ public:
     void loadQuizNameAndId(QString quizName, int ID);
     void setName(QString name);
     void buttonVisibility();
+    enum Step{NEXT_QUESTION, PREVIOUS_QUESTION};
 
 private slots:
     void on_pushButton_finish_clicked();
@@ -38,7 +38,7 @@ private slots:
 
     void on_pushButton_dontFinish_clicked();
 
-    void enumeration(int);
+    void nextStep(int);
 
 public slots:
     void quizLoading();

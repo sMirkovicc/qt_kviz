@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.database/kvizDjura.db";
+    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.database/kviz.db";
     DbManager db(dbPath);
     Game g;
     g.init();
