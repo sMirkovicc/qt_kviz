@@ -1,12 +1,16 @@
-#include "game.h"
-#include "quiz.h"
-#include "question.h"
-
 #ifndef SELECTION_H
 #define SELECTION_H
 
+#include "quiz.h"
+#include "question.h"
+#include "highscore.h"
+
 #include <QDialog>
 #include <QObject>
+#include <QSignalMapper>
+#include <QTableWidget>
+
+#define NUMBER_OF_ANSWERS 4
 
 namespace Ui {
 class Selection;
@@ -19,24 +23,28 @@ class Selection : public QDialog
 public:
     explicit Selection(QWidget *parent = nullptr);
     ~Selection();
-    void Init();
-    void LoadQuizNameAndID(QString quizName, int ID);
-    void LoadName(QString name);
-    void ButtonVisibility();
+    void init();
+    void loadQuizNameAndId(QString quizName, int ID);
+    void setName(QString name);
+    void buttonVisibility();
+    enum Step{NEXT_QUESTION, PREVIOUS_QUESTION};
 
 private slots:
-    void on_pushButton_next_clicked();
-
-    void on_pushButton_previous_clicked();
-
     void on_pushButton_finish_clicked();
 
     void on_pushButton_highscore_clicked();
+
+    void on_pushButton_finishUnanswered_clicked();
+
+    void on_pushButton_dontFinish_clicked();
+
+    void nextStep(int);
 
 public slots:
     void quizLoading();
     void playing();
     void print();
+
 
 signals:
     void loadQuiz();
@@ -46,14 +54,15 @@ signals:
 private:
     Ui::Selection *ui;
     Quiz quiz;
-    Game game;
+    Highscore highscore;
     QString m_playerName;
-    QString m_DBanswers[4];
+    QString m_DBanswers[NUMBER_OF_ANSWERS];
     std::vector<Question> m_CollectionOfQuestions;
     int m_size = 0;
     int indexOfCurrentQuestion = 0;
     std::vector<int> m_answer;
     int m_correctAnswers = 0;
+    QTableWidgetItem* item;
     int w;
     int h;
 };

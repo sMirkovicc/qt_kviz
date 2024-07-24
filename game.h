@@ -1,8 +1,8 @@
-#include <QtSql>
-
 #ifndef GAME_H
 #define GAME_H
 
+#include "selection.h"
+#include <QtSql>
 #include <QWidget>
 #include <QObject>
 
@@ -19,26 +19,27 @@ class Game : public QWidget
 public:
     Game(QWidget *parent = nullptr);
     ~Game();
-    void Init();
+    void init();
 
 private slots:
-    void on_pushButton_InsertName_clicked();
+    void on_pushButton_insertName_clicked();
 
-    void on_pushButton_QuizSelection_clicked();
+    void on_pushButton_quizSelection_clicked();
 
 public slots:
-    void quizIDLoading();
+    void quizIdLoading();
     void databaseLoading();
 
 signals:
-    void loadQuizID();
+    void loadQuizId();
     void loadDatabase();
 
 private:
     Ui::Game *ui;
     QString m_name;
     QString m_quizName;
-    int m_QuizID;
+    int m_quizId;
+    Selection selection;
 
 };
 #endif // GAME_H

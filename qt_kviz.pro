@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dbmanager.cpp \
     game.cpp \
     highscore.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     selection.cpp
 
 HEADERS += \
+    dbmanager.h \
     game.h \
     highscore.h \
     question.h \

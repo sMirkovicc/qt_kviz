@@ -2,75 +2,75 @@
 
 Question::Question() {}
 
-Question::Question(int QuestionID, int QuizID, QString Question, QString ArrayOfAnswers[4], int CorrectAnswer)
-    : m_QuestionID(QuestionID), m_QuizID(QuizID), m_Question(Question), m_CorrectAnswer(CorrectAnswer)
+Question::Question(int questionId, int quizId, QString question, QString arrayOfAnswers[NUMBER_OF_ANSWERS], int correctAnswer)
+    : m_questionId(questionId), m_quizId(quizId), m_question(question), m_correctAnswer(correctAnswer)
 {
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < NUMBER_OF_ANSWERS; i++)
     {
-        m_ArrayOfAnswers[i] = ArrayOfAnswers[i];
+        m_arrayOfAnswers[i] = arrayOfAnswers[i];
     }
 }
 
 Question::~Question() {}
 
 Question::Question(const Question& original)
-    : m_QuestionID(original.m_QuestionID), m_QuizID(original.m_QuizID), m_Question(original.m_Question), m_CorrectAnswer(original.m_CorrectAnswer)
+    : m_questionId(original.m_questionId), m_quizId(original.m_quizId), m_question(original.m_question), m_correctAnswer(original.m_correctAnswer)
 {
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < NUMBER_OF_ANSWERS; i++)
     {
-        m_ArrayOfAnswers[i] = original.m_ArrayOfAnswers[i];
+        m_arrayOfAnswers[i] = original.m_arrayOfAnswers[i];
     }
 }
 
-void Question::setQuestionID(int QuestionID)
+void Question::setQuestionId(int& questionId)
 {
-    m_QuestionID = QuestionID;
+    m_questionId = questionId;
 }
-int Question::getQuestionID()
+int Question::getQuestionId()
 {
-    return m_QuestionID;
-}
-
-void Question::setQuizID(int QuizID)
-{
-    m_QuizID = QuizID;
-}
-int Question::getQuizID()
-{
-    return m_QuizID;
+    return m_questionId;
 }
 
-void Question::setQuestion(QString Question)
+void Question::setQuizId(int& quizId)
 {
-    m_Question = Question;
+    m_quizId = quizId;
+}
+int Question::getQuizId()
+{
+    return m_quizId;
+}
+
+void Question::setQuestion(QString& question)
+{
+    m_question = question;
 }
 QString Question::getQuestion()
 {
-    return m_Question;
+    return m_question;
 }
 
-void Question::setAnswer(int i, QString Answer)
+void Question::setAnswer(int i, QString& answer)
 {
-    m_ArrayOfAnswers[i] = Answer;
+    m_arrayOfAnswers[i] = answer;
 }
 QString Question::getAnswer(int i)
 {
-    return m_ArrayOfAnswers[i];
+    return m_arrayOfAnswers[i];
 }
 
-bool Question::setCorrectAnswer(int CorrectAnswer)
+bool Question::setCorrectAnswer(int& correctAnswer)
 {
-    if(CorrectAnswer > 0 && CorrectAnswer < 5)
+    if(correctAnswer > 0 && correctAnswer < NUMBER_OF_ANSWERS + 1)
     {
-        m_CorrectAnswer = CorrectAnswer;
-        return 1;
+        m_correctAnswer = correctAnswer;
+        return true;
     }
     else
     {
-        return 0;
+        return false;
     }
 }
 int Question::getCorrectAnswer()
 {
-    return m_CorrectAnswer;
+    return m_correctAnswer;
 }

@@ -1,5 +1,6 @@
 #include "highscore.h"
 #include "ui_highscore.h"
+#include "dbmanager.h"
 #include <QPixmap>
 
 Highscore::Highscore(QWidget *parent)
@@ -15,16 +16,16 @@ Highscore::~Highscore()
     delete model;
 }
 
-void Highscore::Init()
+void Highscore::init()
 {
     QObject::connect(this, &Highscore::loadQuizName, this, &Highscore::quizNameLoading);
-    QObject::connect(this, &Highscore::loadQuizID, this, &Highscore::quizIDLoading);
+    QObject::connect(this, &Highscore::loadQuizId, this, &Highscore::quizIdLoading);
     QObject::connect(this, &Highscore::loadHighscore, this, &Highscore::highscoreLoading);
 
-    QPixmap picture("://database/picture.jpg");
+    QPixmap backgroundPicture("://assets/picture.jpg");
     int w = ui->label_picture->width();
     int h = ui->label_picture->height();
-    ui->label_picture->setPixmap(picture.scaled(w, h, Qt::IgnoreAspectRatio));
+    ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 
     ui->comboBox_quiz->setPlaceholderText("--Vas izbor--");
     ui->comboBox_quiz->setCurrentIndex(-1);
@@ -37,93 +38,50 @@ void Highscore::Init()
 
 void Highscore::quizNameLoading()
 {
+    QSqlQuery selectAllQuizesHSQuery("SELECT * FROM kviz");
+    int idName = selectAllQuizesHSQuery.record().indexOf("Naziv");
+    while (selectAllQuizesHSQuery.next())
     {
-        QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
-        m_db.setDatabaseName("/home/Sara/saraqt/qt_kviz/database/kviz.db");
-
-        if (!m_db.open())
-        {
-            qDebug() << "Error: connection with database failed";
-        }
-        else
-        {
-            qDebug() << "Database: connection ok";
-        }
-
-        QSqlQuery query5("SELECT * FROM kviz");
-        int idName = query5.record().indexOf("Naziv");
-        while (query5.next())
-        {
-            ui->comboBox_quiz->addItem(query5.value(idName).toString());
-        }
-        m_db.close();
+        ui->comboBox_quiz->addItem(selectAllQuizesHSQuery.value(idName).toString());
     }
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
 
-void Highscore::quizIDLoading()
+void Highscore::quizIdLoading()
 {
+    QSqlQuery selectQuizIdQuery;
+    selectQuizIdQuery.prepare("SELECT IDKviza FROM kviz WHERE Naziv = (:name)");
+    selectQuizIdQuery.bindValue(":name", m_quizName);
+
+    if (selectQuizIdQuery.exec())
     {
-        QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
-        m_db.setDatabaseName("/home/Sara/saraqt/qt_kviz/database/kviz.db");
-
-        if (!m_db.open())
+        if (selectQuizIdQuery.next())
         {
-            qDebug() << "Error: connection with database failed";
+            m_QuizId = selectQuizIdQuery.value(0).toInt();
         }
-        else
-        {
-            qDebug() << "Database: connection ok";
-        }
-        QSqlQuery query6;
-        query6.prepare("SELECT IDKviza FROM kviz WHERE Naziv = (:name)");
-        query6.bindValue(":name", m_quizName);
-
-        if (query6.exec())
-        {
-            if (query6.next())
-            {
-                m_QuizID = query6.value(0).toInt();
-            }
-        }
-        m_db.close();
     }
-
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
     emit Highscore::loadHighscore();
 }
 
 void Highscore::highscoreLoading()
 {
-    {
-        ui->tableView->setVisible(true);
-        ui->label_2->setVisible(true);
 
-        QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
-        m_db.setDatabaseName("/home/Sara/saraqt/qt_kviz/database/kviz.db");
+    ui->tableView->setVisible(true);
+    ui->label_2->setVisible(true);
 
-        if (!m_db.open())
-        {
-            qDebug() << "Error: connection with database failed";
-        }
-        else
-        {
-            qDebug() << "Database: connection ok";
-        }
-        QSqlQuery query7;
-        query7.prepare("SELECT ImeIgraca AS [Ime igraca], BrojPoena AS [Broj poena] FROM highscore WHERE IDKviza = (:quizID) ORDER BY BrojPoena DESC LIMIT 3");
-        query7.bindValue(":quizID", m_QuizID);
-        query7.exec();
+    QSqlQuery selectForHighscoreQuery;
+    selectForHighscoreQuery.prepare("SELECT ImeIgraca AS [Ime igraca], BrojPoena AS [Broj poena] FROM highscore WHERE IDKviza = (:quizId) ORDER BY BrojPoena DESC LIMIT 3");
+    selectForHighscoreQuery.bindValue(":quizId", m_QuizId);
+    selectForHighscoreQuery.exec();
 
-        model = new QSqlQueryModel();
-        model->setQuery(query7);
-        ui->tableView->setModel(model);
+    model = new QSqlQueryModel();
+    model->setQuery(std::move(selectForHighscoreQuery));
+    ui->tableView->setModel(model);
+    QHeaderView* vheader = ui->tableView->verticalHeader();
+    vheader->setSectionResizeMode(QHeaderView::Stretch);
 
-        m_db.close();
-    }
-
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+    QHeaderView* hheader=ui->tableView->horizontalHeader();
+    hheader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void Highscore::on_pushButton_selectQuiz_clicked()
@@ -132,7 +90,7 @@ void Highscore::on_pushButton_selectQuiz_clicked()
     {
         m_quizName = ui->comboBox_quiz->currentText();
 
-        emit Highscore::loadQuizID();
+        emit Highscore::loadQuizId();
     }
 }
 
