@@ -34,11 +34,11 @@ QString Quiz::getQuizName()
     return m_quizName;
 }
 
-void Quiz::setCollectionOfQuestions(std::vector<Question>& collectionOfQuestions)
+void Quiz::setCollectionOfQuestions(std::vector<Question> collectionOfQuestions)
 {
     m_collectionOfQuestions = collectionOfQuestions;
 }
-std::vector<Question> Quiz::getCollectionOfQuestions()
+std::vector<Question>& Quiz::getCollectionOfQuestions()
 {
     return m_collectionOfQuestions;
 }

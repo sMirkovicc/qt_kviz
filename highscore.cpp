@@ -1,10 +1,9 @@
 #include "highscore.h"
 #include "ui_highscore.h"
-#include "dbmanager.h"
 #include <QPixmap>
 
 Highscore::Highscore(QWidget *parent)
-    : QDialog(parent)
+    : QWidget(parent)
     , ui(new Ui::Highscore)
 {
     ui->setupUi(this);
@@ -13,27 +12,34 @@ Highscore::Highscore(QWidget *parent)
 Highscore::~Highscore()
 {
     delete ui;
-    delete model;
+    if(highscoreIterator > 0)
+    {
+        delete model;
+    }
 }
 
 void Highscore::init()
 {
-    QObject::connect(this, &Highscore::loadQuizName, this, &Highscore::quizNameLoading);
-    QObject::connect(this, &Highscore::loadQuizId, this, &Highscore::quizIdLoading);
-    QObject::connect(this, &Highscore::loadHighscore, this, &Highscore::highscoreLoading);
-
-    QPixmap backgroundPicture("://assets/picture.jpg");
-    int w = ui->label_picture->width();
-    int h = ui->label_picture->height();
-    ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
-
     ui->comboBox_quiz->setPlaceholderText("--Vas izbor--");
     ui->comboBox_quiz->setCurrentIndex(-1);
 
     ui->tableView->setVisible(false);
     ui->label_2->setVisible(false);
 
-    emit Highscore::loadQuizName();
+    if(highscoreIterator == 0)
+    {
+        QObject::connect(this, &Highscore::loadQuizName, this, &Highscore::quizNameLoading);
+        QObject::connect(this, &Highscore::loadQuizId, this, &Highscore::quizIdLoading);
+        QObject::connect(this, &Highscore::loadHighscore, this, &Highscore::highscoreLoading);
+
+        QPixmap backgroundPicture("://assets/picture.jpg");
+        int w = ui->label_picture->width();
+        int h = ui->label_picture->height();
+        ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
+
+        emit Highscore::loadQuizName();
+    }
+    highscoreIterator++;
 }
 
 void Highscore::quizNameLoading()
@@ -65,7 +71,6 @@ void Highscore::quizIdLoading()
 
 void Highscore::highscoreLoading()
 {
-
     ui->tableView->setVisible(true);
     ui->label_2->setVisible(true);
 
@@ -80,7 +85,7 @@ void Highscore::highscoreLoading()
     QHeaderView* vheader = ui->tableView->verticalHeader();
     vheader->setSectionResizeMode(QHeaderView::Stretch);
 
-    QHeaderView* hheader=ui->tableView->horizontalHeader();
+    QHeaderView* hheader = ui->tableView->horizontalHeader();
     hheader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
@@ -93,4 +98,6 @@ void Highscore::on_pushButton_selectQuiz_clicked()
         emit Highscore::loadQuizId();
     }
 }
+
+
 

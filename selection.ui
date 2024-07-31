@@ -372,7 +372,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label_picture2">
@@ -3081,11 +3081,33 @@
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_playAgain">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>440</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sawasdee</family>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Igrajte ponovo</string>
+     </property>
+    </widget>
     <zorder>label_confetti</zorder>
     <zorder>pushButton_highscore</zorder>
     <zorder>label_correctQuestions</zorder>
     <zorder>tableWidget</zorder>
+    <zorder>pushButton_playAgain</zorder>
    </widget>
+   <widget class="QWidget" name="page_3"/>
   </widget>
  </widget>
  <resources/>

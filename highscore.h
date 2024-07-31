@@ -1,7 +1,7 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QObject>
 #include <QtSql>
 
@@ -9,7 +9,7 @@ namespace Ui {
 class Highscore;
 }
 
-class Highscore : public QDialog
+class Highscore : public QWidget
 {
     Q_OBJECT
 
@@ -36,6 +36,7 @@ private:
     QString m_quizName;
     int m_QuizId;
     QSqlQueryModel* model;
+    int highscoreIterator = 0;
 };
 
 #endif // HIGHSCORE_H

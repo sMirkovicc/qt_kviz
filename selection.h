@@ -3,7 +3,6 @@
 
 #include "quiz.h"
 #include "question.h"
-#include "highscore.h"
 
 #include <QDialog>
 #include <QObject>
@@ -40,21 +39,23 @@ private slots:
 
     void nextStep(int);
 
+    void on_pushButton_playAgain_clicked();
+
 public slots:
     void quizLoading();
     void playing();
     void print();
 
-
 signals:
     void loadQuiz();
     void play();
     void finish();
+    void playAgain();
+    void openHighscore();
 
 private:
     Ui::Selection *ui;
     Quiz quiz;
-    Highscore highscore;
     QString m_playerName;
     QString m_DBanswers[NUMBER_OF_ANSWERS];
     std::vector<Question> m_CollectionOfQuestions;
@@ -65,6 +66,7 @@ private:
     QTableWidgetItem* item;
     int w;
     int h;
+    int selectionIterator = 0;
 };
 
 #endif // SELECTION_H

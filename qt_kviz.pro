@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     question.cpp \
     quiz.cpp \
+    rootwidget.cpp \
     selection.cpp
 
 HEADERS += \
@@ -23,11 +24,13 @@ HEADERS += \
     highscore.h \
     question.h \
     quiz.h \
+    rootwidget.h \
     selection.h
 
 FORMS += \
     game.ui \
     highscore.ui \
+    rootwidget.ui \
     selection.ui
 
 # Default rules for deployment.

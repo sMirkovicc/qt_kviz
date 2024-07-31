@@ -2,7 +2,7 @@
 #include "ui_selection.h"
 #include <QPixmap>
 #include <QStringList>
-
+#include <QtSql>
 
 Selection::Selection(QWidget *parent)
     : QDialog(parent)
@@ -18,16 +18,20 @@ Selection::~Selection()
 
 void Selection::init()
 {
-    QObject::connect(this, &Selection::loadQuiz, this, &Selection::quizLoading);
-    QObject::connect(this, &Selection::play, this, &Selection::playing);
-    QObject::connect(this, &Selection::finish, this, &Selection::print);
+    if(selectionIterator == 0)
+    {
+        QObject::connect(this, &Selection::loadQuiz, this, &Selection::quizLoading);
+        QObject::connect(this, &Selection::play, this, &Selection::playing);
+        QObject::connect(this, &Selection::finish, this, &Selection::print);
 
-    QSignalMapper *bMapper = new QSignalMapper;
-    connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(nextStep(int)));
-    connect(ui->pushButton_previous, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-    bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
-    connect(ui->pushButton_next, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-    bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
+        QSignalMapper *bMapper = new QSignalMapper;
+        connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(nextStep(int)));
+        connect(ui->pushButton_previous, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
+        bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
+        connect(ui->pushButton_next, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
+        bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
+    }
+    selectionIterator++;
 
     ui->stackedWidget->setCurrentIndex(0);
     QPixmap backgroundPicture("://assets/picture2.jpg");
@@ -38,6 +42,8 @@ void Selection::init()
     ui->label_unansweredQuestions2->setVisible(false);
     ui->pushButton_finishUnanswered->setVisible(false);
     ui->pushButton_dontFinish->setVisible(false);
+    ui->pushButton_finish->setVisible(true);
+    ui->comboBox_answers->setDisabled(false);
 
     ui->comboBox_answers->setPlaceholderText("--Vas odgovor--");
     ui->comboBox_answers->setCurrentIndex(-1);
@@ -93,12 +99,9 @@ void Selection::quizLoading()
                    selectAllQuizValuesQuery.value(2).toString(), m_DBanswers, selectAllQuizValuesQuery.value(NUMBER_OF_ANSWERS + 3).toInt());
         m_CollectionOfQuestions.emplace_back(q);
     }
-
     quiz.setCollectionOfQuestions(m_CollectionOfQuestions);
     m_size = quiz.getCollectionOfQuestions().size();
     m_answer.assign(m_size, 0);
-
-    emit Selection::play();
 }
 
 void Selection::playing()
@@ -223,9 +226,7 @@ void Selection::on_pushButton_finish_clicked()
 void Selection::on_pushButton_highscore_clicked()
 {
     delete item;
-    highscore.init();
-    ui->stackedWidget->addWidget(&highscore);
-    ui->stackedWidget->setCurrentWidget(&highscore);
+    emit openHighscore();
 }
 
 
@@ -247,4 +248,11 @@ void Selection::on_pushButton_dontFinish_clicked()
 }
 
 
+void Selection::on_pushButton_playAgain_clicked()
+{
+    indexOfCurrentQuestion = 0;
+    m_CollectionOfQuestions.clear();
+    m_correctAnswers = 0;
+    emit playAgain();
+}
 

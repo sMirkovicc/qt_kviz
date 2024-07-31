@@ -25,8 +25,8 @@ public:
     void setQuizName(QString& quizName);
     QString getQuizName();
 
-    void setCollectionOfQuestions(std::vector<Question>& collectionOfQuestions);
-    std::vector<Question> getCollectionOfQuestions();
+    void setCollectionOfQuestions(std::vector<Question> collectionOfQuestions);
+    std::vector<Question>& getCollectionOfQuestions();
 };
 
 #endif // QUIZ_H

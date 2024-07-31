@@ -1,7 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "selection.h"
 #include <QtSql>
 #include <QWidget>
 #include <QObject>
@@ -33,13 +32,13 @@ public slots:
 signals:
     void loadQuizId();
     void loadDatabase();
+    void openSelection(QString quizName, int quizId, QString name);
 
 private:
     Ui::Game *ui;
     QString m_name;
     QString m_quizName;
     int m_quizId;
-    Selection selection;
-
+    int gameIterator = 0;
 };
 #endif // GAME_H
