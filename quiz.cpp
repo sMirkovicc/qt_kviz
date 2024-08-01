@@ -20,7 +20,7 @@ void Quiz::setQuizId(int& quizId)
 {
     m_quizId = quizId;
 }
-int Quiz::getQuizId()
+int Quiz::getQuizId() const
 {
     return m_quizId;
 }
@@ -29,16 +29,16 @@ void Quiz::setQuizName(QString& quizName)
 {
     m_quizName = quizName;
 }
-QString Quiz::getQuizName()
+QString Quiz::getQuizName() const
 {
     return m_quizName;
 }
 
-void Quiz::setCollectionOfQuestions(std::vector<Question> collectionOfQuestions)
+void Quiz::setCollectionOfQuestions(std::vector<Question>& collectionOfQuestions)
 {
     m_collectionOfQuestions = collectionOfQuestions;
 }
-std::vector<Question>& Quiz::getCollectionOfQuestions()
+std::vector<Question> Quiz::getCollectionOfQuestions() const
 {
     return m_collectionOfQuestions;
 }

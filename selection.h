@@ -23,8 +23,9 @@ public:
     explicit Selection(QWidget *parent = nullptr);
     ~Selection();
     void init();
-    void loadQuizNameAndId(QString quizName, int ID);
-    void setName(QString name);
+    void resetView();
+    void loadQuizNameAndId(QString& quizName, int& ID);
+    void setName(QString& name);
     void buttonVisibility();
     enum Step{NEXT_QUESTION, PREVIOUS_QUESTION};
 
@@ -66,7 +67,6 @@ private:
     QTableWidgetItem* item;
     int w;
     int h;
-    int selectionIterator = 0;
 };
 
 #endif // SELECTION_H

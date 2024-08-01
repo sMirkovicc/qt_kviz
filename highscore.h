@@ -17,6 +17,7 @@ public:
     explicit Highscore(QWidget *parent = nullptr);
     ~Highscore();
     void init();
+    void resetView();
 
 private slots:
     void on_pushButton_selectQuiz_clicked();
@@ -35,8 +36,7 @@ private:
     Ui::Highscore *ui;
     QString m_quizName;
     int m_QuizId;
-    QSqlQueryModel* model;
-    int highscoreIterator = 0;
+    QSqlQueryModel* model = nullptr;
 };
 
 #endif // HIGHSCORE_H

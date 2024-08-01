@@ -16,17 +16,19 @@ Game::~Game()
 
 void Game::init()
 {
-    if(gameIterator == 0)
-    {
-        QObject::connect(this, &Game::loadQuizId, this, &Game::quizIdLoading);
-        QObject::connect(this, &Game::loadDatabase, this, &Game::databaseLoading);
+    QObject::connect(this, &Game::loadQuizId, this, &Game::quizIdLoading);
+    QObject::connect(this, &Game::loadDatabase, this, &Game::databaseLoading);
 
-        QPixmap backgroundPicture("://assets/picture.jpg");
-        int w = ui->label_picture->width();
-        int h = ui->label_picture->height();
-        ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
-    }
+    QPixmap backgroundPicture("://assets/picture.jpg");
+    int w = ui->label_picture->width();
+    int h = ui->label_picture->height();
+    ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 
+    emit Game::loadDatabase();
+}
+
+void Game::resetView()
+{
     ui->insertName->setDisabled(false);
     ui->pushButton_insertName->setDisabled(false);
     ui->pushButton_quizSelection->setVisible(false);
@@ -74,12 +76,6 @@ void Game::on_pushButton_insertName_clicked()
         ui->label_2->setVisible(true);
         ui->comboBox_quizSelection->setPlaceholderText("--Izaberite zeljeni kviz--");
         ui->comboBox_quizSelection->setCurrentIndex(-1);
-
-        if(gameIterator == 0)
-        {
-            emit Game::loadDatabase();
-        }
-        gameIterator++;
     }
 }
 

@@ -2,13 +2,12 @@
 #include "rootwidget.h"
 
 #include <QApplication>
-#include <QtSql>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.database/kviz.db";
+    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.qt_kviz/kviz.db";
     DbManager db(dbPath);
 
     RootWidget root;

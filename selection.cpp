@@ -18,21 +18,20 @@ Selection::~Selection()
 
 void Selection::init()
 {
-    if(selectionIterator == 0)
-    {
-        QObject::connect(this, &Selection::loadQuiz, this, &Selection::quizLoading);
-        QObject::connect(this, &Selection::play, this, &Selection::playing);
-        QObject::connect(this, &Selection::finish, this, &Selection::print);
+    QObject::connect(this, &Selection::loadQuiz, this, &Selection::quizLoading);
+    QObject::connect(this, &Selection::play, this, &Selection::playing);
+    QObject::connect(this, &Selection::finish, this, &Selection::print);
 
-        QSignalMapper *bMapper = new QSignalMapper;
-        connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(nextStep(int)));
-        connect(ui->pushButton_previous, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-        bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
-        connect(ui->pushButton_next, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
-        bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
-    }
-    selectionIterator++;
+    QSignalMapper *bMapper = new QSignalMapper;
+    connect(bMapper, &QSignalMapper::mappedInt, this, &Selection::nextStep);
+    connect(ui->pushButton_previous, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
+    bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
+    connect(ui->pushButton_next, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
+    bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
+}
 
+void Selection::resetView()
+{
     ui->stackedWidget->setCurrentIndex(0);
     QPixmap backgroundPicture("://assets/picture2.jpg");
     w = ui->label_picture2->width();
@@ -49,7 +48,7 @@ void Selection::init()
     ui->comboBox_answers->setCurrentIndex(-1);
 }
 
-void Selection::loadQuizNameAndId(QString quizName, int ID)
+void Selection::loadQuizNameAndId(QString& quizName, int& ID)
 {
     quiz.setQuizName(quizName);
     quiz.setQuizId(ID);
@@ -57,7 +56,7 @@ void Selection::loadQuizNameAndId(QString quizName, int ID)
     emit Selection::loadQuiz();
 }
 
-void Selection::setName(QString name)
+void Selection::setName(QString& name)
 {
     m_playerName = name;
 }

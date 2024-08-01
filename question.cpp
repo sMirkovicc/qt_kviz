@@ -26,7 +26,7 @@ void Question::setQuestionId(int& questionId)
 {
     m_questionId = questionId;
 }
-int Question::getQuestionId()
+int Question::getQuestionId() const
 {
     return m_questionId;
 }
@@ -35,7 +35,7 @@ void Question::setQuizId(int& quizId)
 {
     m_quizId = quizId;
 }
-int Question::getQuizId()
+int Question::getQuizId() const
 {
     return m_quizId;
 }
@@ -44,7 +44,7 @@ void Question::setQuestion(QString& question)
 {
     m_question = question;
 }
-QString Question::getQuestion()
+QString Question::getQuestion() const
 {
     return m_question;
 }
@@ -53,7 +53,7 @@ void Question::setAnswer(int i, QString& answer)
 {
     m_arrayOfAnswers[i] = answer;
 }
-QString Question::getAnswer(int i)
+QString Question::getAnswer(int i) const
 {
     return m_arrayOfAnswers[i];
 }
@@ -70,7 +70,7 @@ bool Question::setCorrectAnswer(int& correctAnswer)
         return false;
     }
 }
-int Question::getCorrectAnswer()
+int Question::getCorrectAnswer() const
 {
     return m_correctAnswer;
 }

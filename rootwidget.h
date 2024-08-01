@@ -22,7 +22,7 @@ public:
 
 private slots:
     void openingGame();
-    void openingSelection(QString quizName, int quizId, QString name);
+    void openingSelection(QString& quizName, int& quizId, QString& name);
     void openingHighscore();
 
 signals:
@@ -34,7 +34,6 @@ private:
     Game game;
     Selection selection;
     Highscore highscore;
-    int gameIterator = 0;
 };
 
 #endif // ROOTWIDGET_H

@@ -17,38 +17,47 @@ RootWidget::~RootWidget()
 void RootWidget::init()
 {
     QObject::connect(this, &RootWidget::openGame, this, &RootWidget::openingGame);
-    QObject::connect(&game, SIGNAL(openSelection(QString,int,QString)), this, SLOT(openingSelection(QString,int,QString)));
-    QObject::connect(&selection, SIGNAL(playAgain()), this, SLOT(openingGame()));
-    QObject::connect(&selection, SIGNAL(openHighscore()), this, SLOT(openingHighscore()));
-    QObject::connect(this, SIGNAL(playQuiz()), &selection, SLOT(playing()));
+    QObject::connect(&game, &Game::openSelection, this, &RootWidget::openingSelection);
+    QObject::connect(&selection, &Selection::playAgain, this, &RootWidget::openingGame);
+    QObject::connect(&selection, &Selection::openHighscore, this, &RootWidget::openingHighscore);
+    QObject::connect(this, &RootWidget::playQuiz, &selection, &Selection::playing);
 
     emit RootWidget::openGame();
 }
 
 void RootWidget::openingGame()
 {
-    if(gameIterator == 0)
+    if(ui->stackedWidgetR->indexOf(&game) == -1)
     {
         ui->stackedWidgetR->addWidget(&game);
+        game.init();
     }
-    game.init();
-    gameIterator++;
+    game.resetView();
     ui->stackedWidgetR->setCurrentWidget(&game);
 }
 
-void RootWidget::openingSelection(QString quizName, int quizId, QString name)
+void RootWidget::openingSelection(QString& quizName, int& quizId, QString& name)
 {
-    selection.init();
+    if(ui->stackedWidgetR->indexOf(&selection) == -1)
+    {
+       ui->stackedWidgetR->addWidget(&selection);
+        selection.init();
+    }
+    selection.resetView();
     selection.loadQuizNameAndId(quizName, quizId);
     selection.setName(name);
-    ui->stackedWidgetR->addWidget(&selection);
     ui->stackedWidgetR->setCurrentWidget(&selection);
     emit playQuiz();
 }
 
 void RootWidget::openingHighscore()
 {
-    highscore.init();
-    ui->stackedWidgetR->addWidget(&highscore);
+    if(ui->stackedWidgetR->indexOf(&highscore) == -1)
+    {
+        ui->stackedWidgetR->addWidget(&highscore);
+        highscore.init();
+    }
+    highscore.resetView();
     ui->stackedWidgetR->setCurrentWidget(&highscore);
 }
+

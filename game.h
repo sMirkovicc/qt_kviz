@@ -19,6 +19,7 @@ public:
     Game(QWidget *parent = nullptr);
     ~Game();
     void init();
+    void resetView();
 
 private slots:
     void on_pushButton_insertName_clicked();
@@ -32,13 +33,12 @@ public slots:
 signals:
     void loadQuizId();
     void loadDatabase();
-    void openSelection(QString quizName, int quizId, QString name);
+    void openSelection(QString& quizName, int& quizId, QString& name);
 
 private:
     Ui::Game *ui;
     QString m_name;
     QString m_quizName;
     int m_quizId;
-    int gameIterator = 0;
 };
 #endif // GAME_H
