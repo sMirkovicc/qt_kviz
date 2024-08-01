@@ -1,10 +1,9 @@
 #include "highscore.h"
 #include "ui_highscore.h"
-#include "dbmanager.h"
 #include <QPixmap>
 
 Highscore::Highscore(QWidget *parent)
-    : QDialog(parent)
+    : QWidget(parent)
     , ui(new Ui::Highscore)
 {
     ui->setupUi(this);
@@ -13,7 +12,10 @@ Highscore::Highscore(QWidget *parent)
 Highscore::~Highscore()
 {
     delete ui;
-    delete model;
+    if(model != nullptr)
+    {
+        delete model;
+    }
 }
 
 void Highscore::init()
@@ -27,13 +29,16 @@ void Highscore::init()
     int h = ui->label_picture->height();
     ui->label_picture->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 
+    emit Highscore::loadQuizName();
+}
+
+void Highscore::resetView()
+{
     ui->comboBox_quiz->setPlaceholderText("--Vas izbor--");
     ui->comboBox_quiz->setCurrentIndex(-1);
 
     ui->tableView->setVisible(false);
     ui->label_2->setVisible(false);
-
-    emit Highscore::loadQuizName();
 }
 
 void Highscore::quizNameLoading()
@@ -65,7 +70,6 @@ void Highscore::quizIdLoading()
 
 void Highscore::highscoreLoading()
 {
-
     ui->tableView->setVisible(true);
     ui->label_2->setVisible(true);
 
@@ -80,7 +84,7 @@ void Highscore::highscoreLoading()
     QHeaderView* vheader = ui->tableView->verticalHeader();
     vheader->setSectionResizeMode(QHeaderView::Stretch);
 
-    QHeaderView* hheader=ui->tableView->horizontalHeader();
+    QHeaderView* hheader = ui->tableView->horizontalHeader();
     hheader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
@@ -93,4 +97,5 @@ void Highscore::on_pushButton_selectQuiz_clicked()
         emit Highscore::loadQuizId();
     }
 }
+
 

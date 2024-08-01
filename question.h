@@ -23,19 +23,19 @@ public:
     Question(const Question& original);
 
     void setQuestionId(int& questionId);
-    int getQuestionId();
+    int getQuestionId() const;
 
     void setQuizId(int& quizId);
-    int getQuizId();
+    int getQuizId() const;
 
     void setQuestion(QString& question);
-    QString getQuestion();
+    QString getQuestion() const;
 
     void setAnswer(int i, QString& answer);
-    QString getAnswer(int i);
+    QString getAnswer(int i) const;
 
     bool setCorrectAnswer(int& correctAnswer);
-    int getCorrectAnswer();
+    int getCorrectAnswer() const;
 };
 
 #endif // QUESTION_H

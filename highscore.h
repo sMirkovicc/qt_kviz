@@ -1,7 +1,7 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QObject>
 #include <QtSql>
 
@@ -9,7 +9,7 @@ namespace Ui {
 class Highscore;
 }
 
-class Highscore : public QDialog
+class Highscore : public QWidget
 {
     Q_OBJECT
 
@@ -17,6 +17,7 @@ public:
     explicit Highscore(QWidget *parent = nullptr);
     ~Highscore();
     void init();
+    void resetView();
 
 private slots:
     void on_pushButton_selectQuiz_clicked();
@@ -35,7 +36,7 @@ private:
     Ui::Highscore *ui;
     QString m_quizName;
     int m_QuizId;
-    QSqlQueryModel* model;
+    QSqlQueryModel* model = nullptr;
 };
 
 #endif // HIGHSCORE_H

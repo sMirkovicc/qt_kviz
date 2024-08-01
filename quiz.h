@@ -20,13 +20,13 @@ public:
     Quiz(const Quiz& original);
 
     void setQuizId(int& quizId);
-    int getQuizId();
+    int getQuizId() const;
 
     void setQuizName(QString& quizName);
-    QString getQuizName();
+    QString getQuizName() const;
 
     void setCollectionOfQuestions(std::vector<Question>& collectionOfQuestions);
-    std::vector<Question> getCollectionOfQuestions();
+    std::vector<Question> getCollectionOfQuestions() const;
 };
 
 #endif // QUIZ_H

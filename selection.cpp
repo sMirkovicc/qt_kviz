@@ -2,7 +2,7 @@
 #include "ui_selection.h"
 #include <QPixmap>
 #include <QStringList>
-
+#include <QtSql>
 
 Selection::Selection(QWidget *parent)
     : QDialog(parent)
@@ -23,12 +23,15 @@ void Selection::init()
     QObject::connect(this, &Selection::finish, this, &Selection::print);
 
     QSignalMapper *bMapper = new QSignalMapper;
-    connect(bMapper, SIGNAL(mappedInt(int)), this, SLOT(nextStep(int)));
-    connect(ui->pushButton_previous, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
+    connect(bMapper, &QSignalMapper::mappedInt, this, &Selection::nextStep);
+    connect(ui->pushButton_previous, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
     bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
-    connect(ui->pushButton_next, SIGNAL(clicked(bool)), bMapper, SLOT(map()));
+    connect(ui->pushButton_next, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
     bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
+}
 
+void Selection::resetView()
+{
     ui->stackedWidget->setCurrentIndex(0);
     QPixmap backgroundPicture("://assets/picture2.jpg");
     w = ui->label_picture2->width();
@@ -38,12 +41,14 @@ void Selection::init()
     ui->label_unansweredQuestions2->setVisible(false);
     ui->pushButton_finishUnanswered->setVisible(false);
     ui->pushButton_dontFinish->setVisible(false);
+    ui->pushButton_finish->setVisible(true);
+    ui->comboBox_answers->setDisabled(false);
 
     ui->comboBox_answers->setPlaceholderText("--Vas odgovor--");
     ui->comboBox_answers->setCurrentIndex(-1);
 }
 
-void Selection::loadQuizNameAndId(QString quizName, int ID)
+void Selection::loadQuizNameAndId(QString& quizName, int& ID)
 {
     quiz.setQuizName(quizName);
     quiz.setQuizId(ID);
@@ -51,7 +56,7 @@ void Selection::loadQuizNameAndId(QString quizName, int ID)
     emit Selection::loadQuiz();
 }
 
-void Selection::setName(QString name)
+void Selection::setName(QString& name)
 {
     m_playerName = name;
 }
@@ -93,12 +98,9 @@ void Selection::quizLoading()
                    selectAllQuizValuesQuery.value(2).toString(), m_DBanswers, selectAllQuizValuesQuery.value(NUMBER_OF_ANSWERS + 3).toInt());
         m_CollectionOfQuestions.emplace_back(q);
     }
-
     quiz.setCollectionOfQuestions(m_CollectionOfQuestions);
     m_size = quiz.getCollectionOfQuestions().size();
     m_answer.assign(m_size, 0);
-
-    emit Selection::play();
 }
 
 void Selection::playing()
@@ -223,9 +225,7 @@ void Selection::on_pushButton_finish_clicked()
 void Selection::on_pushButton_highscore_clicked()
 {
     delete item;
-    highscore.init();
-    ui->stackedWidget->addWidget(&highscore);
-    ui->stackedWidget->setCurrentWidget(&highscore);
+    emit openHighscore();
 }
 
 
@@ -247,4 +247,11 @@ void Selection::on_pushButton_dontFinish_clicked()
 }
 
 
+void Selection::on_pushButton_playAgain_clicked()
+{
+    indexOfCurrentQuestion = 0;
+    m_CollectionOfQuestions.clear();
+    m_correctAnswers = 0;
+    emit playAgain();
+}
 

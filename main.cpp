@@ -1,5 +1,5 @@
-#include "game.h"
 #include "dbmanager.h"
+#include "rootwidget.h"
 
 #include <QApplication>
 
@@ -7,11 +7,12 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.database/kviz.db";
+    QString dbPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.qt_kviz/kviz.db";
     DbManager db(dbPath);
-    Game g;
-    g.init();
-    g.show();
+
+    RootWidget root;
+    root.show();
+    root.init();
 
     return a.exec();
 }
