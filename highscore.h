@@ -22,6 +22,8 @@ public:
 private slots:
     void on_pushButton_selectQuiz_clicked();
 
+    void on_pushButton_goBack_clicked();
+
 public slots:
     void quizNameLoading();
     void quizIdLoading();
@@ -31,6 +33,7 @@ signals:
     void loadQuizName();
     void loadQuizId();
     void loadHighscore();
+    void goBack();
 
 private:
     Ui::Highscore *ui;

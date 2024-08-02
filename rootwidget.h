@@ -22,8 +22,9 @@ public:
 
 private slots:
     void openingGame();
-    void openingSelection(QString& quizName, int& quizId, QString& name);
+    void openingSelection(QString& quizName, int quizId, QString& name);
     void openingHighscore();
+    void openingSelectionFromHS();
 
 signals:
     void openGame();

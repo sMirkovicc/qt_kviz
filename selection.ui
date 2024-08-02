@@ -372,7 +372,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label_picture2">
@@ -3093,7 +3093,7 @@
      <property name="font">
       <font>
        <family>Sawasdee</family>
-       <pointsize>9</pointsize>
+       <pointsize>10</pointsize>
        <bold>true</bold>
       </font>
      </property>
@@ -3107,7 +3107,6 @@
     <zorder>tableWidget</zorder>
     <zorder>pushButton_playAgain</zorder>
    </widget>
-   <widget class="QWidget" name="page_3"/>
   </widget>
  </widget>
  <resources/>

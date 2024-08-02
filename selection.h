@@ -24,7 +24,7 @@ public:
     ~Selection();
     void init();
     void resetView();
-    void loadQuizNameAndId(QString& quizName, int& ID);
+    void loadQuizNameAndId(QString& quizName, int ID);
     void setName(QString& name);
     void buttonVisibility();
     enum Step{NEXT_QUESTION, PREVIOUS_QUESTION};
@@ -64,7 +64,7 @@ private:
     int indexOfCurrentQuestion = 0;
     std::vector<int> m_answer;
     int m_correctAnswers = 0;
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
     int w;
     int h;
 };

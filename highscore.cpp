@@ -99,3 +99,8 @@ void Highscore::on_pushButton_selectQuiz_clicked()
 }
 
 
+void Highscore::on_pushButton_goBack_clicked()
+{
+    emit goBack();
+}
+
