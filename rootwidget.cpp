@@ -21,6 +21,7 @@ void RootWidget::init()
     QObject::connect(&selection, &Selection::playAgain, this, &RootWidget::openingGame);
     QObject::connect(&selection, &Selection::openHighscore, this, &RootWidget::openingHighscore);
     QObject::connect(this, &RootWidget::playQuiz, &selection, &Selection::playing);
+    QObject::connect(&highscore, &Highscore::goBack, this, &RootWidget::openingSelectionFromHS);
 
     emit RootWidget::openGame();
 }
@@ -36,7 +37,7 @@ void RootWidget::openingGame()
     ui->stackedWidgetR->setCurrentWidget(&game);
 }
 
-void RootWidget::openingSelection(QString& quizName, int& quizId, QString& name)
+void RootWidget::openingSelection(QString& quizName, int quizId, QString& name)
 {
     if(ui->stackedWidgetR->indexOf(&selection) == -1)
     {
@@ -61,3 +62,7 @@ void RootWidget::openingHighscore()
     ui->stackedWidgetR->setCurrentWidget(&highscore);
 }
 
+void RootWidget::openingSelectionFromHS()
+{
+    ui->stackedWidgetR->setCurrentWidget(&selection);
+}

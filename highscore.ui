@@ -371,6 +371,33 @@
      <height>601</height>
     </rect>
    </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled/>
+    </palette>
+   </property>
    <widget class="QWidget" name="page">
     <widget class="QPushButton" name="pushButton_selectQuiz">
      <property name="geometry">
@@ -1508,6 +1535,33 @@
       </font>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_goBack">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>30</y>
+       <width>80</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Sawasdee</family>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Nazad</string>
+     </property>
+    </widget>
+    <zorder>pushButton_goBack</zorder>
+    <zorder>pushButton_selectQuiz</zorder>
+    <zorder>label_picture</zorder>
+    <zorder>label</zorder>
+    <zorder>comboBox_quiz</zorder>
+    <zorder>label_2</zorder>
+    <zorder>tableView</zorder>
    </widget>
   </widget>
  </widget>

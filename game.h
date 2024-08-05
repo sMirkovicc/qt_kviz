@@ -33,7 +33,7 @@ public slots:
 signals:
     void loadQuizId();
     void loadDatabase();
-    void openSelection(QString& quizName, int& quizId, QString& name);
+    void openSelection(QString& quizName, int quizId, QString& name);
 
 private:
     Ui::Game *ui;

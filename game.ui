@@ -372,6 +372,33 @@
      <height>601</height>
     </rect>
    </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled/>
+    </palette>
+   </property>
    <widget class="QWidget" name="page">
     <widget class="QPushButton" name="pushButton_insertName">
      <property name="geometry">
@@ -1293,22 +1320,6 @@
        <pointsize>10</pointsize>
        <bold>true</bold>
       </font>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_2"/>
-   <widget class="QWidget" name="page_3">
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>210</y>
-       <width>161</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>proba</string>
      </property>
     </widget>
    </widget>

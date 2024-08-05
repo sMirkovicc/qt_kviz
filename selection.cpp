@@ -14,6 +14,10 @@ Selection::Selection(QWidget *parent)
 Selection::~Selection()
 {
     delete ui;
+    if(item != nullptr)
+    {
+        delete item;
+    }
 }
 
 void Selection::init()
@@ -48,7 +52,7 @@ void Selection::resetView()
     ui->comboBox_answers->setCurrentIndex(-1);
 }
 
-void Selection::loadQuizNameAndId(QString& quizName, int& ID)
+void Selection::loadQuizNameAndId(QString& quizName, int ID)
 {
     quiz.setQuizName(quizName);
     quiz.setQuizId(ID);
@@ -224,7 +228,6 @@ void Selection::on_pushButton_finish_clicked()
 
 void Selection::on_pushButton_highscore_clicked()
 {
-    delete item;
     emit openHighscore();
 }
 
