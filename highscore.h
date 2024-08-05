@@ -39,7 +39,6 @@ private:
     Ui::Highscore *ui;
     QString m_quizName;
     int m_QuizId;
-    QSqlQueryModel* model = nullptr;
 };
 
 #endif // HIGHSCORE_H

@@ -65,6 +65,7 @@ private:
     std::vector<int> m_answer;
     int m_correctAnswers = 0;
     QTableWidgetItem* item = nullptr;
+    QSignalMapper *bMapper = nullptr;
     int w;
     int h;
 };
