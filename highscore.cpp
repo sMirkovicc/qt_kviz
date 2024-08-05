@@ -12,10 +12,6 @@ Highscore::Highscore(QWidget *parent)
 Highscore::~Highscore()
 {
     delete ui;
-    if(model != nullptr)
-    {
-        delete model;
-    }
 }
 
 void Highscore::init()
@@ -78,7 +74,7 @@ void Highscore::highscoreLoading()
     selectForHighscoreQuery.bindValue(":quizId", m_QuizId);
     selectForHighscoreQuery.exec();
 
-    model = new QSqlQueryModel();
+    QSqlQueryModel* model = new QSqlQueryModel();
     model->setQuery(std::move(selectForHighscoreQuery));
     ui->tableView->setModel(model);
     QHeaderView* vheader = ui->tableView->verticalHeader();

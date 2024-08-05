@@ -18,6 +18,10 @@ Selection::~Selection()
     {
         delete item;
     }
+    if(bMapper != nullptr)
+    {
+        delete bMapper;
+    }
 }
 
 void Selection::init()
@@ -26,21 +30,29 @@ void Selection::init()
     QObject::connect(this, &Selection::play, this, &Selection::playing);
     QObject::connect(this, &Selection::finish, this, &Selection::print);
 
-    QSignalMapper *bMapper = new QSignalMapper;
+    bMapper = new QSignalMapper;
     connect(bMapper, &QSignalMapper::mappedInt, this, &Selection::nextStep);
     connect(ui->pushButton_previous, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
     bMapper->setMapping(ui->pushButton_previous, PREVIOUS_QUESTION);
     connect(ui->pushButton_next, &QPushButton::clicked, bMapper, qOverload<>(&QSignalMapper::map));
     bMapper->setMapping(ui->pushButton_next, NEXT_QUESTION);
+
+    QPixmap backgroundPicture("://assets/picture2.jpg");
+    w = ui->label_picture2->width();
+    h = ui->label_picture2->height();
+    ui->label_picture2->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
+
+    QPixmap purpleConfettiPicture("://assets/purple-confetti");
+    w = ui->label_confetti->width();
+    h = ui->label_confetti->height();
+    ui->label_confetti->setPixmap(purpleConfettiPicture.scaled(w, h, Qt::IgnoreAspectRatio));
 }
 
 void Selection::resetView()
 {
     ui->stackedWidget->setCurrentIndex(0);
-    QPixmap backgroundPicture("://assets/picture2.jpg");
-    w = ui->label_picture2->width();
-    h = ui->label_picture2->height();
-    ui->label_picture2->setPixmap(backgroundPicture.scaled(w, h, Qt::IgnoreAspectRatio));
+    ui->label_picture2->setVisible(true);
+    ui->label_confetti->setVisible(false);
     ui->label_unansweredQuestions->setVisible(false);
     ui->label_unansweredQuestions2->setVisible(false);
     ui->pushButton_finishUnanswered->setVisible(false);
@@ -133,10 +145,9 @@ void Selection::print()
     ui->stackedWidget->setCurrentIndex(1);
     ui->label_correctQuestions->setText("Takmicar " + m_playerName + " je pogodio " + QString::number(m_correctAnswers) + "/"
                                 + QString::number(m_size) + " pitanja.");
-    QPixmap purpleConfettiPicture("://assets/purple-confetti");
-    w = ui->label_confetti->width();
-    h = ui->label_confetti->height();
-    ui->label_confetti->setPixmap(purpleConfettiPicture.scaled(w, h, Qt::IgnoreAspectRatio));
+
+    ui->label_picture2->setVisible(false);
+    ui->label_confetti->setVisible(true);
 
     ui->tableWidget->setRowCount(m_size);
     ui->tableWidget->setColumnCount(2);
